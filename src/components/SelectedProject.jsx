@@ -1,5 +1,5 @@
 export default function SelectedProject({project}) {
-    const formattedDATE = newDate(project.dueDate).toLocaleDateString('en-UK', {
+    const formattedDate = newDate(project.dueDate).toLocaleDateString('en-UK', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
@@ -11,7 +11,7 @@ export default function SelectedProject({project}) {
                 <h1 className="text-3xl font-bold text-stone-600 mb-2">{project.title}</h1>
                 <button className="text-stone-600 hover:text-stone950">Delete</button>
             </div>
-            <p className="mb-4 text-stone-400">{formattedDATE}</p>
+            <p className="mb-4 text-stone-400">{formattedDate}</p>
             <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
         </header>
         TASKS
