@@ -39,7 +39,7 @@ function App() {
 
   function handleAddProject(projectData) {
     setProjectsState(prevState => {
-      const projectId = Math.random();
+      const projectId = Math.random(); // generate ID properly in backend later
       const newProject = {
         ...projectData,
         id: projectId
@@ -52,13 +52,22 @@ function App() {
     })
   }
 
-  console.log(projectsState);
+  function handleDeleteProject(){
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter((project) => project.id !== prevState.selectedProjectId
+        ),
+      };
+    });
+  }
 
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectId
     );
   
-  let content = <SelectedProject project={selectedProject} />
+  let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProject}/>
 
   if (projectsState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject}/>
